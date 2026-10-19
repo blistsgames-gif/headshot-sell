@@ -1,0 +1,929 @@
+@import "tailwindcss";
+
+/* =====================================================================
+   Cores e fontes do Tema Moderno (também usadas nas telas de login)
+   ===================================================================== */
+@theme {
+  --color-fundo: #f6f7f9;
+  --color-superficie: #ffffff;
+  --color-borda: #e6e8ec;
+  --color-texto: #111418;
+  --color-secundario: #6b7280;
+  --color-alvo: #c8102e;
+  --color-positivo: #1f7a4d;
+  --color-atencao: #e0a100;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+html,
+body {
+  background: var(--color-fundo);
+  color: var(--color-texto);
+  font-family: var(--font-sans);
+}
+
+/* =====================================================================
+   Componentes no estilo Moderno.
+   Ficam na camada "components": no tema Retrô o 98.css (que vem fora
+   de camada) passa por cima sozinho em botões, campos etc.
+   ===================================================================== */
+@layer components {
+  .hs-campo {
+    display: block;
+    width: 100%;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--color-borda);
+    border-radius: 8px;
+    background: var(--color-superficie);
+    color: var(--color-texto);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .hs-campo:focus {
+    border-color: #9ca3af;
+    box-shadow: 0 0 0 3px rgb(17 20 24 / 0.06);
+  }
+
+  .hs-botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    border: 1px solid var(--color-borda);
+    border-radius: 8px;
+    background: var(--color-superficie);
+    color: var(--color-texto);
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .hs-botao:hover {
+    background: #f1f2f4;
+  }
+  .hs-botao:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .hs-botao-principal {
+    background: var(--color-texto);
+    border-color: var(--color-texto);
+    color: #fff;
+  }
+  .hs-botao-principal:hover {
+    background: #2a2f36;
+  }
+  .hs-botao-pequeno {
+    height: 2rem;
+    padding: 0 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .hs-icone-botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 8px;
+    color: var(--color-secundario);
+  }
+  .hs-icone-botao:hover {
+    background: #eef0f3;
+    color: var(--color-texto);
+  }
+
+  .hs-kbd {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-secundario);
+    border: 1px solid var(--color-borda);
+    border-radius: 4px;
+    padding: 0 0.3rem;
+    line-height: 1.25rem;
+    background: var(--color-superficie);
+  }
+
+  .hs-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border-radius: 8px;
+    color: var(--color-secundario);
+    font-size: 0.9375rem;
+  }
+  .hs-menu-item:hover {
+    background: #f3f4f6;
+    color: var(--color-texto);
+  }
+  .hs-menu-item[aria-current="page"] {
+    background: #eef0f3;
+    color: var(--color-texto);
+    font-weight: 500;
+  }
+
+  .hs-contador {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-secundario);
+  }
+  .hs-contador-alerta {
+    color: #fff;
+    background: var(--color-alvo);
+    border-radius: 999px;
+    padding: 0 0.45rem;
+    line-height: 1.25rem;
+  }
+
+  .hs-mira {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 40rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--color-borda);
+    border-radius: 10px;
+    background: var(--color-superficie);
+  }
+  .hs-mira input {
+    background: transparent;
+    outline: none;
+    font-size: 0.9375rem;
+  }
+  .hs-mira:focus-within {
+    border-color: #9ca3af;
+  }
+
+  .hs-aviso-faixa {
+    margin: 1rem 1rem 0;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid #f3e1a6;
+    border-left: 3px solid var(--color-atencao);
+    border-radius: 8px;
+    background: #fffbeb;
+    font-size: 0.875rem;
+  }
+  @media (min-width: 768px) {
+    .hs-aviso-faixa {
+      margin: 1rem 2rem 0;
+    }
+  }
+
+  .hs-selo-teste {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #111418;
+    background: var(--color-atencao);
+    border-radius: 4px;
+    padding: 0.1rem 0.45rem;
+  }
+
+  /* Cabeçalho de página */
+  .hs-cabecalho {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+  .hs-cabecalho h1 {
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .hs-cabecalho p {
+    color: var(--color-secundario);
+    margin-top: 0.25rem;
+  }
+
+  .hs-etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-secundario);
+    border: 1px solid var(--color-borda);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+    background: var(--color-superficie);
+  }
+  .hs-etiqueta-atencao {
+    color: #7a5a00;
+    border-color: #f3e1a6;
+    background: #fffbeb;
+  }
+
+  /* Indicadores: números grandes, sem caixa */
+  .hs-indicadores {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    .hs-indicadores {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .hs-indicador {
+    min-width: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .hs-indicador legend {
+    padding: 0;
+    font-size: 0.8125rem;
+    color: var(--color-secundario);
+  }
+  .hs-indicador-valor {
+    font-family: var(--font-mono);
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-top: 0.35rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hs-indicador-detalhe {
+    font-size: 0.8125rem;
+    color: var(--color-secundario);
+    margin-top: 0.25rem;
+  }
+  .hs-tom-positivo {
+    color: var(--color-positivo);
+  }
+  .hs-tom-atencao {
+    color: #a27400;
+  }
+  .hs-tom-alerta {
+    color: var(--color-alvo);
+  }
+
+  /* Cartões e blocos */
+  .hs-cartao {
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borda);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .hs-cartao h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .hs-em-construcao {
+    border: 1px dashed #d1d5db;
+    border-radius: 12px;
+    padding: 2.5rem 1.25rem;
+    text-align: center;
+    color: var(--color-secundario);
+  }
+
+  .hs-opcao-tema {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid var(--color-borda);
+    border-radius: 12px;
+    padding: 0.75rem;
+    cursor: pointer;
+    text-align: left;
+    background: var(--color-superficie);
+  }
+  .hs-opcao-tema[aria-pressed="true"] {
+    border-color: var(--color-texto);
+    box-shadow: 0 0 0 1px var(--color-texto);
+  }
+
+  .hs-tabela {
+    width: 100%;
+    font-size: 0.875rem;
+    border-collapse: collapse;
+  }
+  .hs-tabela th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--color-secundario);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-borda);
+  }
+  .hs-tabela td {
+    padding: 0.625rem 0.75rem;
+    border-bottom: 1px solid var(--color-borda);
+    vertical-align: top;
+  }
+
+  .hs-pre {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: #f9fafb;
+    border: 1px solid var(--color-borda);
+    border-radius: 8px;
+    padding: 0.75rem;
+    max-height: 20rem;
+    overflow: auto;
+  }
+
+  .hs-dica {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--color-borda);
+    border-radius: 12px;
+    background: var(--color-superficie);
+    margin-bottom: 1.75rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* Gaveta do celular desliza da esquerda */
+@keyframes hs-entrar-esquerda {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.hs-gaveta {
+  animation: hs-entrar-esquerda 0.18s ease-out;
+}
+
+/* =====================================================================
+   TEMA RETRÔ (Windows 98). Base: 98.css (carregado só neste tema).
+   ===================================================================== */
+[data-tema="retro"] {
+  --r-cinza: #c0c0c0;
+  --r-azul: #000080;
+  --r-sombra-alta: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+  --r-sombra-funda: inset -1px -1px #ffffff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+  font-family: Tahoma, "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif;
+  font-size: 12px;
+  color: #000;
+}
+[data-tema="retro"] :is(button, input, select, textarea, label, legend, .window, .title-bar, ul.tree-view, table) {
+  font-family: Tahoma, "Pixelated MS Sans Serif", Arial, sans-serif;
+  font-size: 12px;
+}
+[data-tema="retro"] ::selection {
+  background: var(--r-azul);
+  color: #fff;
+}
+[data-tema="retro"] :focus-visible {
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+[data-tema="retro"] .title-bar {
+  background: linear-gradient(90deg, #000080, #1084d0);
+}
+
+.hs98-desktop {
+  min-height: 100dvh;
+  background: #008080;
+  padding-bottom: 34px;
+}
+.hs98-area {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  .hs98-area {
+    padding: 1rem;
+    height: calc(100dvh - 34px);
+  }
+}
+
+/* Ícones da área de trabalho */
+.hs98-icones {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .hs98-icones {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(auto-fill, 72px);
+    grid-auto-columns: 84px;
+    gap: 2px 4px;
+    height: 100%;
+    flex-shrink: 0;
+  }
+}
+.hs98-icone-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+  text-align: center;
+  padding: 2px;
+}
+.hs98-icone-figura {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  color: var(--r-azul, #000080);
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080;
+}
+.hs98-icone-rotulo {
+  font-size: 11px;
+  line-height: 1.2;
+  padding: 0 2px;
+}
+.hs98-icone-desktop:focus .hs98-icone-rotulo,
+.hs98-icone-desktop:hover .hs98-icone-rotulo {
+  background: #000080;
+  outline: 1px dotted #fff;
+}
+
+/* Janela principal */
+.hs98-janela {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - 34px);
+}
+@media (min-width: 768px) {
+  .hs98-janela {
+    min-height: 0;
+    height: 100%;
+  }
+}
+
+.hs98-menubar {
+  display: flex;
+  gap: 0;
+  padding: 2px 2px 0;
+}
+[data-tema="retro"] .hs98-menu-titulo {
+  min-width: 0;
+  min-height: 20px;
+  padding: 0 8px;
+  background: transparent;
+  box-shadow: none;
+  color: #000;
+  text-shadow: none;
+}
+[data-tema="retro"] .hs98-menu-titulo[aria-expanded="true"] {
+  background: #000080;
+  color: #fff;
+}
+[data-tema="retro"] .hs98-menu-titulo[aria-expanded="true"] u {
+  border-bottom-color: #fff;
+}
+.hs98-menu-lista {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 60;
+  min-width: 200px;
+  padding: 2px;
+  list-style: none;
+}
+[data-tema="retro"] .hs98-menu-lista button {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  min-height: 22px;
+  padding: 0 20px;
+  background: transparent;
+  box-shadow: none;
+  color: #000;
+  text-shadow: none;
+  text-align: left;
+}
+[data-tema="retro"] .hs98-menu-lista button:hover:not(:disabled) {
+  background: #000080;
+  color: #fff;
+}
+[data-tema="retro"] .hs98-menu-lista button:disabled {
+  color: #808080;
+  text-shadow: 1px 1px #fff;
+}
+
+/* Barra de ferramentas */
+.hs98-ferramentas {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 4px;
+  margin: 2px 2px 0;
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #fff;
+}
+[data-tema="retro"] .hs98-ferramenta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  min-height: 24px;
+  padding: 0 8px;
+  color: #000;
+  text-shadow: none;
+  background: var(--r-cinza);
+  box-shadow: var(--r-sombra-alta);
+}
+.hs98-mira {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  max-width: 480px;
+  margin-left: 4px;
+}
+.hs98-mira input {
+  height: 22px;
+}
+[data-tema="retro"] .hs-kbd {
+  font-family: inherit;
+  font-size: 11px;
+  color: #444;
+  border: 0;
+  background: transparent;
+}
+
+/* Corpo da janela: árvore à esquerda, conteúdo à direita */
+.hs98-corpo {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 6px;
+  margin: 6px !important;
+}
+.hs98-lateral {
+  width: 200px;
+  flex-shrink: 0;
+  overflow: auto;
+  background: #fff;
+}
+.hs98-arvore {
+  border: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  min-height: 100%;
+}
+.hs98-arvore-item {
+  color: #000;
+  text-decoration: none;
+  padding: 0 2px;
+}
+.hs98-arvore-item[aria-current="page"] {
+  background: #000080;
+  color: #fff;
+  outline: 1px dotted #ffff80;
+}
+.hs98-conteudo {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  padding: 8px 10px 16px;
+  background: var(--r-cinza);
+}
+
+/* Gaveta (celular) */
+.hs98-gaveta .tree-view {
+  max-height: 70dvh;
+  overflow: auto;
+}
+
+/* Barra de tarefas */
+.hs98-barra-tarefas {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 3px;
+  background: #c0c0c0;
+  box-shadow: inset 0 1px #dfdfdf, inset 0 2px #fff;
+}
+[data-tema="retro"] .hs98-iniciar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  height: 24px;
+  padding: 0 6px;
+  color: #000;
+  text-shadow: none;
+}
+[data-tema="retro"] .hs98-iniciar.active {
+  box-shadow: var(--r-sombra-funda);
+}
+.hs98-programa {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  max-width: 180px;
+  min-width: 0;
+  padding: 0 8px;
+  font-weight: 700;
+  background: repeating-conic-gradient(#fff 0% 25%, #c0c0c0 0% 50%) 0 0 / 2px 2px;
+  box-shadow: var(--r-sombra-funda, inset -1px -1px #fff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a);
+}
+.hs98-bandeja {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 24px;
+  padding: 0 8px;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #808080;
+}
+.hs98-relogio {
+  min-width: 34px;
+  text-align: right;
+}
+[data-tema="retro"] .hs-selo-teste {
+  font-family: inherit;
+  font-size: 11px;
+  background: #ff0;
+  color: #000;
+  border-radius: 0;
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #fff;
+}
+
+/* Menu Iniciar */
+.hs98-iniciar-menu {
+  position: fixed;
+  bottom: 30px;
+  left: 2px;
+  z-index: 50;
+  display: flex;
+  min-width: 220px;
+}
+.hs98-iniciar-faixa {
+  width: 26px;
+  background: linear-gradient(0deg, #000080, #1084d0);
+  color: #c0c0c0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 6px;
+}
+.hs98-iniciar-faixa span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 16px;
+  white-space: nowrap;
+}
+.hs98-iniciar-faixa b {
+  color: #fff;
+}
+.hs98-iniciar-menu ul {
+  flex: 1;
+  list-style: none;
+  padding: 2px;
+  margin: 0;
+}
+.hs98-iniciar-menu li > a,
+[data-tema="retro"] .hs98-iniciar-menu li > button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 30px;
+  padding: 0 8px;
+  color: #000;
+  text-decoration: none;
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+}
+.hs98-iniciar-menu li > a:hover,
+[data-tema="retro"] .hs98-iniciar-menu li > button:hover {
+  background: #000080;
+  color: #fff;
+}
+.hs98-separador {
+  height: 2px;
+  margin: 3px 2px;
+  box-shadow: inset 0 1px #808080, inset 0 -1px #fff;
+}
+
+/* Splash de abertura */
+.hs98-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: #008080;
+}
+.hs98-splash-janela {
+  width: min(360px, calc(100vw - 32px));
+}
+.hs98-splash-titulo {
+  font-size: 20px;
+  font-weight: 700;
+}
+@keyframes hs98-carregar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.hs98-splash-barra {
+  animation: hs98-carregar 1.4s steps(14, end) forwards;
+}
+
+/* --- Peles dos componentes comuns no tema Retrô --- */
+[data-tema="retro"] .hs-cabecalho {
+  margin-bottom: 12px;
+  align-items: center;
+}
+[data-tema="retro"] .hs-cabecalho h1 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+[data-tema="retro"] .hs-cabecalho p {
+  color: #000;
+}
+[data-tema="retro"] .hs-etiqueta {
+  border-radius: 0;
+  border: 1px solid #000;
+  background: #ffffe1;
+  color: #000;
+  font-size: 11px;
+  font-weight: 400;
+}
+[data-tema="retro"] .hs-etiqueta-atencao {
+  background: #ffffe1;
+}
+
+/* Indicadores em visor de LCD dentro de group box */
+[data-tema="retro"] .hs-indicadores {
+  gap: 10px;
+}
+[data-tema="retro"] .hs-indicador {
+  padding: 10px 8px 8px;
+  margin-top: 6px;
+}
+[data-tema="retro"] .hs-indicador legend {
+  padding: 0 3px;
+  color: #000;
+  font-size: 12px;
+}
+[data-tema="retro"] .hs-indicador-valor {
+  font-family: "Consolas", "Lucida Console", "Courier New", monospace;
+  font-size: clamp(18px, 4.5vw, 26px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  margin-top: 0;
+  padding: 4px 8px;
+  text-align: right;
+  background: #000;
+  color: #33ff66;
+  text-shadow: 0 0 6px rgb(51 255 102 / 0.6);
+  box-shadow: var(--r-sombra-funda);
+}
+[data-tema="retro"] .hs-indicador-detalhe {
+  color: #000;
+  font-size: 11px;
+}
+[data-tema="retro"] .hs-tom-positivo {
+  color: #006400;
+}
+[data-tema="retro"] .hs-tom-atencao {
+  color: #806000;
+}
+[data-tema="retro"] .hs-tom-alerta {
+  color: #c00000;
+}
+
+[data-tema="retro"] .hs-cartao {
+  border: 0;
+  border-radius: 0;
+  padding: 10px;
+  background: var(--r-cinza);
+  box-shadow: var(--r-sombra-alta);
+}
+[data-tema="retro"] .hs-cartao h2 {
+  font-size: 12px;
+  font-weight: 700;
+}
+[data-tema="retro"] .hs-em-construcao {
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  color: #000;
+  box-shadow: var(--r-sombra-funda);
+}
+[data-tema="retro"] .hs-aviso-faixa {
+  margin: 4px 4px 0;
+  border-radius: 0;
+  border: 1px solid #000;
+  background: #ffffe1;
+  font-size: 12px;
+}
+[data-tema="retro"] .hs-opcao-tema {
+  border-radius: 0;
+  border: 0;
+  background: var(--r-cinza);
+  box-shadow: var(--r-sombra-alta);
+  color: #000;
+  text-shadow: none;
+  min-height: 0;
+  padding: 8px;
+}
+[data-tema="retro"] .hs-opcao-tema[aria-pressed="true"] {
+  box-shadow: var(--r-sombra-funda);
+  outline: 1px dotted #000;
+  outline-offset: -5px;
+}
+[data-tema="retro"] .hs-tabela {
+  background: #fff;
+  box-shadow: var(--r-sombra-funda);
+}
+[data-tema="retro"] .hs-tabela th {
+  background: var(--r-cinza);
+  color: #000;
+  box-shadow: var(--r-sombra-alta);
+  font-weight: 400;
+  padding: 3px 6px;
+}
+[data-tema="retro"] .hs-tabela td {
+  padding: 4px 6px;
+  border-bottom: 1px solid #dfdfdf;
+}
+[data-tema="retro"] .hs-pre {
+  border-radius: 0;
+  border: 0;
+  background: #fff;
+  box-shadow: var(--r-sombra-funda);
+  font-family: "Consolas", "Courier New", monospace;
+}
+[data-tema="retro"] .hs-campo {
+  height: 22px;
+}
+[data-tema="retro"] .hs-botao {
+  color: #000;
+  text-shadow: none;
+  font-weight: 400;
+  font-size: 12px;
+  height: auto;
+  min-height: 23px;
+}
+[data-tema="retro"] .hs-contador-alerta {
+  border-radius: 0;
+  background: #c00000;
+}
+[data-tema="retro"] .hs-icone-botao {
+  color: #000;
+}
+
+/* Véu escuro atrás da gaveta e do menu Iniciar (vale para os dois temas) */
+.hs-veu,
+[data-tema] .hs-veu {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: rgb(0 0 0 / 0.3);
+  box-shadow: none;
+  cursor: default;
+}
+[data-tema] .hs-veu-transparente {
+  background: transparent;
+}
+@media (min-width: 768px) {
+  .hs-so-celular,
+  [data-tema] .hs-so-celular {
+    display: none;
+  }
+}
